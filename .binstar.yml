@@ -1,0 +1,4 @@
+package: python-subunit
+script:
+  - conda build .
+build_targets: conda

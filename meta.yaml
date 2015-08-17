@@ -1,0 +1,74 @@
+package:
+  name: python-subunit
+  version: "1.1.0"
+
+source:
+  fn: python-subunit-1.1.0.tar.gz
+  url: https://pypi.python.org/packages/source/p/python-subunit/python-subunit-1.1.0.tar.gz
+  md5: d2c09c93346077ced675c9f718e6a0f1
+#  patches:
+   # List any patch files here
+   # - fix.patch
+
+build:
+  # noarch_python: True
+  preserve_egg_dir: True
+  # entry_points:
+    # Put any entry points (scripts to be generated automatically) here. The
+    # syntax is module:function.  For example
+    #
+    # - python-subunit = python-subunit:main
+    #
+    # Would create an entry point called python-subunit that calls python-subunit.main()
+
+
+  # If this is a new build for the same version, increment the build
+  # number. If you do not include this key, it defaults to 0.
+  # number: 1
+
+requirements:
+  build:
+    - python
+    - setuptools
+    - extras
+    - testtools >=0.9.34
+
+  run:
+    - python
+    - extras
+    - testtools >=0.9.34
+
+test:
+  # Python imports
+  imports:
+    - subunit
+
+  commands:
+    - subunit-1to2 --help
+    - subunit-2to1 --help
+    - subunit-filter --help
+    - subunit-ls --help
+    #- subunit-notify --help
+    - subunit-output --help
+    - subunit-stats --help
+    #- subunit-tags --help
+    - subunit2csv --help
+    #- subunit2gtk --help
+    #- subunit2junitxml --help
+    - subunit2pyunit --help
+    #- tap2subunit --help
+
+  # You can also put a file called run_test.py in the recipe that will be run
+  # at test time.
+
+  # requires:
+    # - testscenarios
+
+about:
+  home: http://launchpad.net/subunit
+  license: Apache License or BSD 3-clause License
+  summary: 'Python implementation of subunit test streaming protocol'
+
+# See
+# http://docs.continuum.io/conda/build.html for
+# more information about meta.yaml
